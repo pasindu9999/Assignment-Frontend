@@ -47,7 +47,12 @@
         [formGroupName]="i"
         class="item-row"
       >
-        <input placeholder="Product Name" formControlName="productName" />
+        <label for="productName-{{ i }}">Product Name</label>
+        <input
+          id="productName-{{ i }}"
+          placeholder="Product Name"
+          formControlName="productName"
+        />
         <div
           *ngIf="
             items.controls[i].get('productName')?.invalid &&
@@ -61,7 +66,10 @@
             Product name is required.
           </span>
         </div>
+
+        <label for="quantity-{{ i }}">Quantity</label>
         <input
+          id="quantity-{{ i }}"
           placeholder="Quantity"
           type="number"
           formControlName="quantity"
@@ -85,7 +93,14 @@
             Quantity must be at least 1.
           </span>
         </div>
-        <input placeholder="Price" type="number" formControlName="price" />
+
+        <label for="price-{{ i }}">Price</label>
+        <input
+          id="price-{{ i }}"
+          placeholder="Price"
+          type="number"
+          formControlName="price"
+        />
         <div
           *ngIf="
             items.controls[i].get('price')?.invalid &&
@@ -105,6 +120,7 @@
             Price must be a non-negative number.
           </span>
         </div>
+
         <button type="button" (click)="removeItem(i)">Remove</button>
       </div>
       <button type="button" (click)="addItem()">+ Add Item</button>

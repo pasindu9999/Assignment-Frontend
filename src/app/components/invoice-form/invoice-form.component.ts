@@ -50,7 +50,7 @@ export class InvoiceFormComponent implements OnInit {
     return this.invoiceForm.get('products') as FormArray;
   }
 
-  addItem(productName: string = '', quantity: number = 1, price: number = 0): void {
+  addItem(productName: string = '', quantity: any = '', price: any = ''): void {
     this.items.push(this.fb.group({
       productName: [productName, Validators.required],
       quantity: [quantity, [Validators.required, Validators.min(1)]],
