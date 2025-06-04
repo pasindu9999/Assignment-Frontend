@@ -1,0 +1,44 @@
+<div class="invoice-view-container" *ngIf="invoice">
+    <h2>Invoice Details</h2>
+  
+    <div class="invoice-header">
+      <p><strong>Invoice ID:</strong> {{ invoice.id }}</p>
+      <p><strong>Date:</strong> {{ invoice.transactionDate | date:'yyyy-MM-dd' }}</p>
+      <p><strong>Discount:</strong> {{ invoice.discount }}%</p>
+      <p><strong>Total Amount:</strong> {{ invoice.totalAmount | currency }}</p>
+      <p><strong>Balance Amount:</strong> {{ invoice.balanceAmount | currency }}</p>
+    </div>
+  
+    <h3>Items</h3>
+    <table class="items-table" *ngIf="invoice.items && invoice.items.length > 0">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Line Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of invoice.items">
+          <td>{{ item.productName }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.price | currency }}</td>
+          <td>{{ (item.quantity * item.price) | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="!invoice.items || invoice.items.length === 0">No items in this invoice.</p>
+  
+    <button (click)="goBack()" class="btn-back">Back to List</button>
+  </div>
+  
+  <div *ngIf="!invoice && !isLoading" class="loading-error">
+    <p>Invoice not found or an error occurred.</p>
+    <button (click)="goBack()" class="btn-back">Back to List</button>
+  </div>
+  
+  <div *ngIf="isLoading" class="loading-error">
+    <p>Loading invoice details...</p>
+  </div>
+

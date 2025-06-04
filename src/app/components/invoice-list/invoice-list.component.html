@@ -1,0 +1,34 @@
+<div class="invoice-container">
+    <div class="header">
+      <h2>Invoices</h2>
+      <button class="btn-create" routerLink="/create">+ Create Invoice</button>
+    </div>
+  
+    <table class="invoice-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date</th>
+          <th>Discount</th>
+          <th>Total</th>
+          <th>Balance</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let invoice of invoices">
+          <td>{{ invoice.id }}</td>
+          <td>{{ invoice.transactionDate | date }}</td>
+          <td>{{ invoice.discount }}</td>
+          <td>{{ invoice.totalAmount }}</td>
+          <td>{{ invoice.balanceAmount }}</td>
+          <td>
+            <button class="btn-view" (click)="view(invoice.id)">View</button>
+            <button class="btn-edit" (click)="edit(invoice.id)">Edit</button>
+            <button class="btn-delete" (click)="delete(invoice.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
